@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Aug 14 13:18:56 2024
+Created on Wed Aug 14 17:59:19 2024
 
 @author: kahve
 """
@@ -65,6 +65,29 @@ print(lin_reg.predict([[6.6]]))
 
 print(lin_reg2.predict(poly_reg.fit_transform([[6.6]])))
 print(lin_reg2.predict(poly_reg.fit_transform([[11]])))
+
+#verilerin olceklenmesi
+from sklearn.preprocessing import StandardScaler
+
+sc1 = StandardScaler()
+x_olcekli = sc1.fit_transform(X)
+sc2 = StandardScaler()
+y_olcekli = sc2.fit_transform(Y)
+
+
+from sklearn.svm import SVR
+
+svr_reg = SVR(kernel = 'rbf')
+svr_reg.fit(x_olcekli, y_olcekli)
+
+plt.scatter(x_olcekli, y_olcekli)
+plt.plot(x_olcekli, svr_reg.predict(x_olcekli))
+
+print(svr_reg.predict(11))
+print(svr_reg.predict(6.6))
+
+
+
 
 
 
